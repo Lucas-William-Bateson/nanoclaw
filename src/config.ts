@@ -71,3 +71,6 @@ export const TRIGGER_PATTERN = new RegExp(
 // Uses system timezone by default
 export const TIMEZONE =
   process.env.TZ || Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+// Copilot SDK model configuration (passed to container as COPILOT_MODEL env var)
+export const COPILOT_MODEL = process.env.COPILOT_MODEL || 'gpt-4o';
