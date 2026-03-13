@@ -24,9 +24,9 @@ jobs:
           mkdir -p ~/.ssh
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
-          ssh-keyscan -p 22 100.94.15.7 >> ~/.ssh/known_hosts 2>/dev/null
+          ssh-keyscan 100.94.15.7 >> ~/.ssh/known_hosts 2>/dev/null
 
-          ssh -o StrictHostKeyChecking=accept-new lucas@100.94.15.7 << 'DEPLOY'
+          ssh -i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes -o StrictHostKeyChecking=accept-new lucas@100.94.15.7 << 'DEPLOY'
             set -e
             cd ~/Github/nanoclaw
             git pull --ff-only
