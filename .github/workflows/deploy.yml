@@ -26,4 +26,4 @@ jobs:
           chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan 100.94.15.7 >> ~/.ssh/known_hosts 2>/dev/null
 
-          ssh -T -i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes -o PasswordAuthentication=no -o StrictHostKeyChecking=accept-new lucas@100.94.15.7 'set -e; cd ~/Github/nanoclaw && git pull --ff-only && npm install --production && npm run build && launchctl kickstart -k gui/$(id -u)/com.nanoclaw && echo "Deploy complete"'
+          ssh -T -i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes -o PasswordAuthentication=no -o StrictHostKeyChecking=accept-new lucas@100.94.15.7 'set -e; if [ ! -d ~/nanoclaw ]; then git clone https://github.com/Lucas-William-Bateson/nanoclaw.git ~/nanoclaw; fi && cd ~/nanoclaw && git pull --ff-only && npm install --production && npm run build && launchctl kickstart -k gui/$(id -u)/com.nanoclaw && echo "Deploy complete"'
